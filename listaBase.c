@@ -61,12 +61,6 @@ void inserir_meio (Nó **lista, int num, int anterior){
 }
 
 
-
-
-
-
-
-
 //____________________procedimento pra inserir no fim_____________________________//
 
 void inserir_fim (Nó **lista, int n){
@@ -92,11 +86,6 @@ void inserir_fim (Nó **lista, int n){
             }aux->prox = novo; // não tendo próximos elementos, botamos o novo como próx
         }
     }else printf("Erro de alocação de memória");
-    
-    
-    
-    
-    
     
 }
 
@@ -124,12 +113,11 @@ void imprimir(Nó *nó){
     
     nó = nó->prox; //percorre a lista
     }printf("\n\n\a");
-    
-    
+   
 }
 
 
-// main ur dr
+//________________________________________________main_______________________________________________//
 int main(){
 
  Nó *lista = NULL;
