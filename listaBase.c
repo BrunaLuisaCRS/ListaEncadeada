@@ -89,6 +89,36 @@ void inserir_fim (Nó **lista, int n){
     
 }
 
+//_____________________procedimento pra inserir ordenado______________________//
+
+void inserir_ordenado(Nó **lista, int num){
+    
+    Nó *aux, *novo = malloc(sizeof(Nó));
+    
+    if(novo){
+        
+        novo->valor = num;
+        // a lista está vazia?
+        if(*lista ==NULL){
+            novo->prox = NULL;    
+            *lista = novo;
+            
+        }else if(novo->valor < (*lista)->valor){  // val é menor que todos osoutros da lista?
+            
+            novo->prox = *lista;
+            *lista = novo;
+        }else{
+            
+            aux = *lista;
+            
+            while(aux->prox && novo->valor > aux->valor){
+                
+                aux = aux->prox;
+            }novo->prox = aux->prox;
+            aux->prox = novo;
+        }   
+    }else printf("Erro de alocação de memória"); 
+}
 
 //____________________procedimento pra retirar do inicio_______________________//
 
@@ -128,7 +158,7 @@ do{
     printf("\n\t Qual operação você quer efetuar com a lista?");
     printf("\n digite: ");
     printf("\n\n1 para inserir item no início\n2 para inserir no meio");
-    printf("\n3 para inserir no final\n4 para ver a lista\n0 para sair\n ");
+    printf("\n3 para inserir no final\n4 para insterir ordenado\n5 para ver a lista\n0 para sair\n ");
     
     scanf("%d", &opção);
     
@@ -151,7 +181,12 @@ do{
         inserir_fim(&lista, valor);
         break;
         
-    case 4: 
+    case 4: printf("\n Digite um valor:");
+        scanf("%d ", &valor);
+        inserir_ordenado(&lista, valor);
+        
+        break;
+    case 5: 
         imprimir(lista);
         break;
         
