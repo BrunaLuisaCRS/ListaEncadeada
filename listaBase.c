@@ -111,7 +111,7 @@ void inserir_ordenado(Nó **lista, int num){
             
             aux = *lista;
             
-            while(aux->prox && novo->valor > aux->valor){
+            while(aux->prox && novo->valor > (aux->prox)->valor){
                 
                 aux = aux->prox;
             }novo->prox = aux->prox;
