@@ -120,16 +120,35 @@ void inserir_ordenado(Nó **lista, int num){
     }else printf("Erro de alocação de memória"); 
 }
 
-//____________________procedimento pra retirar do inicio_______________________//
-
-//_____________________procedimento pra retirar do meio________________________//
-
-//_____________________procedimento pra retirar do fim_________________________//
+//____________________procedimento pra retirar_______________________//
 
 
-
-
-
+Nó* remover(Nó **lista, int num){
+    
+    Nó *aux, *remover = malloc(sizeof(Nó));
+    
+    if(*lista){
+        
+        if((*lista)->valor == num){
+            
+            remover = *lista;
+            *lista = remover->prox;
+            
+        }else{
+            aux = *lista;
+            
+            while(aux->prox && aux->prox->valor != num){
+                
+                aux = aux->prox;
+                
+            }if(aux->prox){
+                
+                remover = aux->prox;
+                aux->prox = remover->prox;
+            }
+        }
+    }return remover;
+}
 
 //_______________________________imprimindo______________________________//
 
@@ -150,7 +169,7 @@ void imprimir(Nó *nó){
 //________________________________________________main_______________________________________________//
 int main(){
 
- Nó *lista = NULL;
+  Nó *removido, *lista = NULL;
  int opção, valor, ant;
 
 do{
@@ -158,8 +177,8 @@ do{
     printf("\n\t Qual operação você quer efetuar com a lista?");
     printf("\n digite: ");
     printf("\n\n1 para inserir item no início\n2 para inserir no meio");
-    printf("\n3 para inserir no final\n4 para insterir ordenado\n5 para ver a lista\n0 para sair\n ");
-    
+    printf("\n3 para inserir no final\n4 para insterir ordenado\n5 para remover\n6 para ver a lista\n0 para sair\n ");
+  
     scanf("%d", &opção);
     
     switch(opção){
@@ -186,7 +205,18 @@ do{
         inserir_ordenado(&lista, valor);
         
         break;
-    case 5: 
+    
+    case 5: printf("\n Digite um valor:");
+        scanf("%d ", &valor);
+        removido = remover(&lista, valor);
+        if(removido){
+            
+            printf("\n Elemento a ser removido: %d", removido->valor);
+            free(removido);
+        }
+        break;
+        
+    case 6: 
         imprimir(lista);
         break;
         
